@@ -9,6 +9,7 @@ import styles from './MarkerAndInfo.module.css';
 
 const MarkerAndInfo = observer((props) => {
   const { lat, lng, place } = props;
+  console.log({props})
 
   const info = <div className={styles.myPinContent}>
     {/* TODO: 가게 기본이미지 제작하면 그걸로 변경 */}

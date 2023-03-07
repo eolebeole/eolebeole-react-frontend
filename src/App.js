@@ -1,18 +1,20 @@
 import { React } from 'react';
-import { BrowserRouter, Route, Routes } from 'react-router-dom'
+import { QueryClient, QueryClientProvider } from 'react-query';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
-import MyPins from './memberPage/MyPins';
 import MainPage from './mainPage/MainPage';
 import SignUp from './mainPage/SignUp';
+import MyPins from './memberPage/MyPins';
 
 import './App.css';
 
+const queryClient = new QueryClient();
 
 
 function App() {
 
   return (
-    <div className="App">
+    <QueryClientProvider client={queryClient}>
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<MainPage />} />
@@ -22,7 +24,7 @@ function App() {
           <Route path="/memberpage" element={<MyPins />} />
         </Routes>
       </BrowserRouter>
-    </div>
+    </QueryClientProvider>
   );
 }
 

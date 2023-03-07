@@ -1,7 +1,7 @@
 import React from 'react';
-import './FriendPlus_Pagination.css';
+import './Pagination.css';
 
-function FriendPlus_Pagination({ total, limit, page, setPage }) {
+function Pagination({ total, limit, page, setPage }) {
   const numPages = Math.ceil(total / limit);
 
   return (
@@ -29,4 +29,4 @@ function FriendPlus_Pagination({ total, limit, page, setPage }) {
   );
 }
 
-export default FriendPlus_Pagination;
+export default Pagination;

@@ -4,7 +4,7 @@ import { FiChevronsLeft } from "react-icons/fi";
 import { IoPersonCircleSharp } from "react-icons/io5";
 import { VscSearch } from "react-icons/vsc";
 import FriendPlus from './FriendPlus';
-import MatMate_Pagination from "./MatMate_Pagination";
+import Pagination from "./Pagination";
 
 import './MatMate.css';
 
@@ -65,7 +65,7 @@ function MatMate(props) {
       </div>
       <div>{list}</div>
       <FriendPlus />
-      <MatMate_Pagination
+      <Pagination
         total={filtered.length}
         limit={limit}
         page={page}

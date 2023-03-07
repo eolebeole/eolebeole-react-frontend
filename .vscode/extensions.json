@@ -2,6 +2,7 @@
   "recommendations": [
     "EditorConfig.EditorConfig",
     "esbenp.prettier-vscode",
+    "Jota0222.multi-formatter",
     "mrmlnc.vscode-postcss-sorting",
     "ms-vscode.live-server",
     "TabNine.tabnine-vscode"

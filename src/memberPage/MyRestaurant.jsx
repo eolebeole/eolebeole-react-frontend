@@ -1,4 +1,4 @@
-import React from "react";
+import { React, useState } from "react";
 import { FiChevronsLeft } from 'react-icons/fi'
 import { FaMapMarkerAlt } from 'react-icons/fa'
 import { BsSearch } from 'react-icons/bs'
@@ -17,6 +17,7 @@ function MyRestaurant(props) {
 
 
     const { markerPositions, setPosition } = props;
+
     const list = markerPositions.map((item) =>
         <>
             <div className={styles.MyRestaurant_content} onClick={() => {

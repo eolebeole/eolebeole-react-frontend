@@ -1,16 +1,19 @@
-
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import { BiPlus } from 'react-icons/bi';
+import { BiPlus } from "react-icons/bi";
 import { IoPersonCircleSharp } from "react-icons/io5";
-import { VscSearch } from 'react-icons/vsc';
-import FriendPlus_Pagination from "./FriendPlus_Pagination";
+import { VscSearch } from "react-icons/vsc";
+import Pagination from "./Pagination";
 
 import "./FriendPlus.css";
 import "./PlusPin.css";
 
-function FriendPlus() {
+const fetchData = async () => {
+  let response = await axios.get('http://localhost:4000/users');
+  return response.data;
+}
 
+function FriendPlus() {
   const [modalOpen, setModalOpen] = useState(false);
   const [users, setUsers] = useState([]);
   const [search, setSearch] = useState("");
@@ -22,10 +25,10 @@ function FriendPlus() {
 
   const openModal = () => {
     setModalOpen(true);
-  }
+  };
   const closeModal = () => {
     setModalOpen(false);
-  }
+  };
 
   const handleChange = (e) => {
     setPage(1);
@@ -40,20 +43,17 @@ function FriendPlus() {
   }, []);
 
   const filtered = users.filter((user) => user.nick.includes(search));
-  const list = filtered.slice(offset, offset + limit)
-    .map((item) => (
-      <>
-        <div id="FriendPlus_content" key={item.id}>
-          <div id="FriendPlus_person">
-            <IoPersonCircleSharp />
-          </div>
-          <div id="FriendPlus_name">
-            {item.nick}#{item.code}
-          </div>
-        </div>
-        <hr />
-      </>
-    ));
+  const list = filtered.slice(offset, offset + limit).map((item) => <>
+    <div id="FriendPlus_content" key={item.id}>
+      <div id="FriendPlus_person">
+        <IoPersonCircleSharp />
+      </div>
+      <div id="FriendPlus_name">
+        {item.nick}#{item.code}
+      </div>
+    </div>
+    <hr />
+  </>);
 
   return (
     <div>
@@ -69,7 +69,6 @@ function FriendPlus() {
               </button>
               <h2>친구 등록</h2>
             </header>
-            <input id="MatMate_friend" type="text" placeholder="닉네임을 입력해주세요." />
             <div id="FriendPlus_search">
               <VscSearch />
             </div>
@@ -81,7 +80,7 @@ function FriendPlus() {
             />
             <div>{list}</div>
             <div>
-              <FriendPlus_Pagination
+              <Pagination
                 total={filtered.length}
                 limit={limit}
                 page={page}
@@ -89,10 +88,10 @@ function FriendPlus() {
               />
             </div>
             <input id="MatMate_friendBtn" type="button" value="친구 등록" />
-          </section >
+          </section>
         ) : null}
-      </div >
-    </div >
+      </div>
+    </div>
   );
 }
 

@@ -1,6 +1,6 @@
 import React from 'react';
 import './MainPage.css';
-
+import { Link } from 'react-router-dom';
 
 function MainPage() {
 
@@ -9,7 +9,6 @@ function MainPage() {
       <div id="main-page">
         <nav id="main-nav">
           <img className="main-logo" src="./img/test-bemeal-logo.png" alt="bemeal지도"></img>
-          {/* <a href="index.html">asdf</a> */}
           <ul>
             <li>
               <button id="loginclick" data-toggle="modal" data-target="#loginModal">로그인</button>
@@ -24,7 +23,7 @@ function MainPage() {
                 </div>
               </div>
             </li>
-            <li><button><a href="signup">회원가입</a></button></li>
+            <li><button><Link to = './SignUp.jsx'/></button></li>
           </ul >
           <div id="goingTop" onClick={() => { window.scrollTo(0, 0) }}> ↑ </div>
         </nav >

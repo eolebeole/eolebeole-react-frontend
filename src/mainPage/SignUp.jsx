@@ -1,9 +1,33 @@
-import React from 'react';
+import { React, useState } from 'react';
+import axios from 'axios';
 import './MainPage.css';
 
 
 
 function SignUp() {
+
+  const [requestResult, setRequestResult] = useState ("");
+
+  const signUpHandler = () => {
+    const data = {
+      //TODO: 값 찾아넣기
+      email: "test@naver.com",
+      pwd: "1234",
+      name: "test",
+      birth: "2023 - 03 - 03",
+      gender: 1,
+      nick: "test",
+      code: 1234,
+    };
+    axios.post('http://localhost:4000/user', data)
+      .then((res) => {
+        setRequestResult('Success!!');
+      })
+      .catch((error) => {
+        setRequestResult('Failed!!');
+      })
+  }
+
   return <>
     <div className="wrapper" style={{ width: '100vw', marginLeft: '20px' }}>
       <div className="title">
@@ -47,7 +71,8 @@ function SignUp() {
         <hr />
       </div>
       <div className="signUp">
-        <button id="signUpButton" disabled onclick="signUpCheck()">가입하기</button>
+        {/* TODO: signUpCheck() 과정 거치기 */}
+        <button id="signUpButton" disabled onClick={signUpHandler}>가입하기</button>
       </div>
     </div>
   </>
