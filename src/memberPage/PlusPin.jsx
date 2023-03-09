@@ -9,10 +9,10 @@ import Pagination from "./Pagination";
 
 import './PlusPin.css';
 
-  const fetchData = async (query,[x, y]) => {
-    let response = await axios.get('http://localhost:4000/places', { params: { x, y, query } });
-    return response.data;
-  }
+const fetchData = async (query, [x, y]) => {
+  let response = await axios.get('http://localhost:4000/places', { params: { x, y, query } });
+  return response.data;
+}
 
 function PlusPin() {
 
@@ -23,7 +23,7 @@ function PlusPin() {
   const offset = (page - 1) * limit;
   const [filtered, setFiltered] = useState([]);
 
-  const { isLoading, error, data: restaurants } = useQuery(['restaurants', position, query], () => fetchData(query,position));
+  const { isLoading, error, data: restaurants } = useQuery(['restaurants', position, query], () => fetchData(query, position));
   const [modalOpen, setModalOpen] = useState(false);
 
   const openModal = () => {
@@ -36,19 +36,18 @@ function PlusPin() {
   const handleChange = (e) => {
     setPage(1);
     setQuery(e.target.value);
-   };
+  };
 
   useEffect(() => {
     if (isLoading) return;
     const filtered = restaurants.filter((place) => place.place_name.includes(query));
     setFiltered(filtered);
-  },[restaurants]);
+  }, [restaurants]);
 
   // if (isLoading) {
   //   return <Loading />;
   // }
   // if (error) {
-  //   return <>{error}</>
   // }
   const list = filtered.slice(offset, offset + limit)
     .map((item) => (

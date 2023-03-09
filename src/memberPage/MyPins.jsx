@@ -11,8 +11,6 @@ import { Error, Loading } from '../components'
 import { useQuery } from 'react-query';
 import styles from './MyPins.module.css';
 
-const { kakao } = window;
-
 const fetchData = async ([x, y]) => {
   let response = await axios.get('http://localhost:4000/places', { params: { x, y } });
   return response.data;
@@ -23,7 +21,7 @@ function MyPins() {
   // 기본 위치 저장 STATE
   const [position, setPosition] = useState([127.48742638905269, 36.64394808472207]);
   // 음식점 목록 저장 STATE
-  const { isLoading, error, data: restaurants } = useQuery(`restaurants ${position}`, () => fetchData(position));
+  const { isLoading, error, data: restaurants } = useQuery(['restaurants', position], () => fetchData(position));
   // 기본 위치 표시
   function successGetPosition(position) {
     var lat = position.coords.latitude;
@@ -64,12 +62,12 @@ function MyPins() {
     // lng={item.latlng.getLng()} /* 가게 추가 시 경도, 위도 가져오는 코드로 활용? */
   }, [restaurants]);
 
-  if (isLoading) {
-    return <Loading />;
-  }
-  if (error) {
-    return <>{error}</>
-  }
+  // if (isLoading) {
+  //   return <Loading />;
+  // }
+  // if (error) {
+  //   return <Error error={error} />;
+  // }
 
   return (
     <div className={styles.Map}>
