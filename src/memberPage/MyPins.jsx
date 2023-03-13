@@ -14,7 +14,7 @@ import styles from './MyPins.module.css';
 const { kakao } = window;
 
 const fetchData = async ([x, y]) => {
-  let response = await axios.get('http://localhost:4000/places', { params: { x, y } });
+  let response = await axios.get('https://broken-glade-4837.fly.dev/places', { params: { x, y } });
   return response.data;
 }
 

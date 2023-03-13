@@ -1,9 +1,18 @@
+import axios from 'axios';
 import { React, useState } from 'react';
+import { useQuery } from 'react-query';
 import './SettingInfo.css';
+
+const fetchData = async (id) => {
+  let response = await axios.get(`http://localhost:4000/users/${id}`);
+  return response.data;
+}
 
 function SettingInfo() {
   const [modalOpen, setModalOpen] = useState(false);
   const [gender, setGender] = useState('');
+
+  const { isLoading, error, data } = useQuery('profile', () => fetchData(1));
 
   const openModal = () => {
     setModalOpen(true);
@@ -50,7 +59,7 @@ function SettingInfo() {
               <div id="SettingInfo_items">
                 <label>이메일</label>
                 <label class="must">*</label>
-                <input name="SettingInfo_email" placeholder="hea@mail.com"></input>
+                <input name="SettingInfo_email" placeholder={data?.email}></input>
               </div>
               <div id="SettingInfo_items">
                 <label>현재 비밀번호</label>
@@ -69,7 +78,7 @@ function SettingInfo() {
               </div>
               <div id="SettingInfo_items">
                 <label>이름</label>
-                <input name="SettingInfo_name" placeholder="박세영"></input>
+                <input name="SettingInfo_name" placeholder={data?.name}></input>
               </div>
               <div id="SettingInfo_items">
                 <label>생년월일</label>

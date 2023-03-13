@@ -96,26 +96,26 @@ function SignUp() {
   };
 
   const saveHandler = (e) => {
-    e.preventDefault();
-    console.log(email);
-    console.log(password);
-    console.log(name);
-    console.log(gender.selectValue);
-    console.log(birthYear.value);
-    console.log(birthMonth.value);
-    console.log(birthDay.value);
-    const body = {
-      email: email,
-      password: password,
-      name: name,
-      gender: gender.selectValue,
-      birth_year: birthYear.value,
-      birth_month: birthMonth.value,
-      birth_day: birthDay.value,
-    };
-    console.log(body);
-    axios.post("http://localhost:8080/register", body)
-      .then((res) => console.log(res));
+    // e.preventDefault();
+    // console.log(email);
+    // console.log(password);
+    // console.log(name);
+    // console.log(gender.selectValue);
+    // console.log(birthYear.value);
+    // console.log(birthMonth.value);
+    // console.log(birthDay.value);
+    // const body = {
+    //   email: email,
+    //   password: password,
+    //   name: name,
+    //   gender: gender.selectValue,
+    //   birth_year: birthYear.value,
+    //   birth_month: birthMonth.value,
+    //   birth_day: birthDay.value,
+    // };
+    // console.log(body);
+    // axios.post("http://localhost:8080/register", body)
+    //   .then((res) => console.log(res));
   }
 
   // 화면 구성 return
@@ -131,11 +131,11 @@ function SignUp() {
       <div id="SignUp_body">
         <div id="notice">*표시는 필수 입력 항목입니다.</div>
         <form onSubmit={saveHandler}>
-          <form.group>
+          <formgroup>
             <label htmlFor="email">이메일</label>
             <input type="email" name="email" id="email" required />
             <div id="email_notice">*이메일을 입력해주세요.</div>
-          </form.group>
+          </formgroup>
         </form>
 
         {/* <div id="SignUp_items">
